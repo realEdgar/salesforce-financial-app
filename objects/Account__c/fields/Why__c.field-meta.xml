@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Why__c</fullName>
+    <description>Describe the purpose of this account, why it was opened.</description>
+    <inlineHelpText>Describe the purpose of this account, why it was opened.</inlineHelpText>
+    <label>Why?</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

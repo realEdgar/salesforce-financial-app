@@ -5,6 +5,14 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>actionNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>Account__c.New_Expense</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Account__c.New_Revenue</value>
+                        </valueListItems>
+                    </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>collapsed</name>

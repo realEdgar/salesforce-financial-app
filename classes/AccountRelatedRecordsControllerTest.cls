@@ -55,4 +55,26 @@ public with sharing class AccountRelatedRecordsControllerTest {
         Assert.areEqual(5, revs.size());
         Assert.areEqual(5, invs.size());
     }
+
+    @IsTest
+    static void investmentRelatedRecordsTest(){
+        Id accountId = [SELECT Id FROM Account__c LIMIT 1].Id;
+        List<Investment__c> invs = AccountRelatedRecordsController.getInvestmentRelated(accountId);
+        
+        List<Goods__c> goods = new List<Goods__c>();
+        for(Integer i = 0; i < 5; i++){
+            Goods__c g = new Goods__c();
+            g.Name = 'Goods Test' + i;
+            g.Investment__c = invs[0].Id;
+            g.No_Titles__c = 5;
+            g.Unit_Cost__c = 500.5;
+
+            goods.add(g);
+        }
+        insert goods;
+
+        List<Goods__c> result = AccountRelatedRecordsController.getGoodsRelated(invs[0].Id);
+        
+        Assert.areEqual(5, result.size());
+    }
 }

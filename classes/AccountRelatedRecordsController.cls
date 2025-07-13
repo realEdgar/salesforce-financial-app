@@ -25,4 +25,13 @@ public with sharing class AccountRelatedRecordsController {
             WHERE Account__c =: accountId
         ];
     }
+
+    @AuraEnabled(cacheable=true)
+    public static List<Goods__c> getGoodsRelated(String investmentId){
+        return [
+            SELECT Id, Name, Investment__c, Unit_Cost__c, No_Titles__c, Current_Value__c, Total_Invested__c, Earned_Money__c
+            FROM Goods__c
+            WHERE Investment__c =: investmentId
+        ];
+    }
 }

@@ -1,0 +1,53 @@
+<template>
+    <lightning-layout horizontal-align="spread">
+        <lightning-layout-item size="4">
+            <header class="slds-border_top slds-var-p-around_x-small slds-theme_shade">
+                <h2 class="slds-text-title_bold">Details</h2>
+            </header>
+            <section class="slds-box">
+                <lightning-record-view-form density="compact" object-api-name="Investment__c" record-id={recordId}>
+                    <lightning-layout horizontal-align="spread" multiple-rows>
+                        <lightning-layout-item size="12" large-device-size="6" medium-device-size="6"
+                            small-device-size="12">
+                            <lightning-output-field field-name="Name" variant="standard"></lightning-output-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="12" large-device-size="6" medium-device-size="6"
+                            small-device-size="12">
+                            <lightning-output-field field-name="Account__c" variant="standard"></lightning-output-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="12" large-device-size="6" medium-device-size="6"
+                            small-device-size="12">
+                            <lightning-output-field field-name="Available_to_Invest__c"
+                                variant="standard"></lightning-output-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="12" large-device-size="6" medium-device-size="6"
+                            small-device-size="12">
+                            <lightning-output-field field-name="Total_Invested_Value__c"
+                                variant="standard"></lightning-output-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="12" large-device-size="6" medium-device-size="6"
+                            small-device-size="12">
+                            <lightning-output-field field-name="Invested_Amount__c"
+                                variant="standard"></lightning-output-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="12" large-device-size="6" medium-device-size="6"
+                            small-device-size="12">
+                            <lightning-output-field field-name="Total_Earned__c"
+                                variant="standard"></lightning-output-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="12" large-device-size="6" medium-device-size="6"
+                            small-device-size="12">
+                            <lightning-output-field field-name="Rate__c" variant="standard"></lightning-output-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </lightning-record-view-form>
+            </section>
+        </lightning-layout-item>
+        <lightning-layout-item size="8">
+            <div class="slds-var-p-left_small">
+                <lightning-datatable key-field="Id" data={goodsData} columns={goodsCols} hide-checkbox-column
+                    draft-values={draftValues} onrowaction={handleRowAction} onsave={handleSave}></lightning-datatable>
+            </div>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

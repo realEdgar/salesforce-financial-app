@@ -1,0 +1,21 @@
+<template>
+    <article>
+        <lightning-layout horizontal-align="spread" vertical-align="center">
+            <lightning-layout-item flexibility="auto">
+                <a onclick={handleNavigateRecord}><strong>{revenueRecord.Name}</strong></a>
+            </lightning-layout-item>
+            <lightning-layout-item size="2" class="slds-text-align_center">
+                <lightning-formatted-number value={revenueRecord.Amount__c} format-style="currency" currency-code={currencyCode} currency-display-as="symbol" ></lightning-formatted-number>
+            </lightning-layout-item>
+            <lightning-layout-item size="4" class="slds-text-align_center">
+                <lightning-formatted-rich-text
+                    value={revenueRecord.Why_Revenue__c}
+                ></lightning-formatted-rich-text>
+            </lightning-layout-item>
+            <lightning-layout-item flexibility="auto">
+                <lightning-formatted-date-time value={revenueRecord.Revenue_Date__c} day="2-digit"
+                    month="2-digit" year="2-digit"></lightning-formatted-date-time>
+            </lightning-layout-item>
+        </lightning-layout>
+    </article>
+</template>

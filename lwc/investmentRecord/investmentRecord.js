@@ -82,22 +82,7 @@ export default class InvestmentRecord extends NavigationMixin(LightningElement) 
         const actionName = e.detail.action.name;
         const recordId = e.detail.row.Id;
 
-        if(actionName === 'delete'){
-            deleteRecord(recordId)
-            .then(() => {
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: 'Record Deleted!',
-                        message: 'Record Deleted Successfully!',
-                        variant: 'warn'
-                    })
-                );
-            }).catch(error => {
-                console.error(error);
-            })
-        } else {
-            this.navigateToRecord(actionName, recordId);
-        }
+        this.navigateToRecord(actionName, recordId);
     }
 
     navigateToRecord(actionName, recordId){

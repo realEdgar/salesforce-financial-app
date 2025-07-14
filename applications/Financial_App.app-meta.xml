@@ -25,16 +25,18 @@
     <formFactors>Small</formFactors>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
-    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavPersonalizationDisabled>true</isNavPersonalizationDisabled>
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
     <label>Financial App</label>
     <navType>Console</navType>
+    <setupExperience>all</setupExperience>
     <tabs>Account__c</tabs>
     <tabs>Expense__c</tabs>
     <tabs>Revenue__c</tabs>
     <tabs>Investment__c</tabs>
     <tabs>Goods__c</tabs>
+    <tabs>Subscription__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Financial_App_UtilityBar</utilityBar>
     <workspaceConfig>
@@ -52,6 +54,9 @@
         </mappings>
         <mappings>
             <tab>Revenue__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Subscription__c</tab>
         </mappings>
     </workspaceConfig>
 </CustomApplication>

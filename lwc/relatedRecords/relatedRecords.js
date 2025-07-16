@@ -77,6 +77,10 @@ export default class RelatedRecords extends LightningElement {
         }
     }
 
+    refreshInvestments(){
+        this.handleRefreshData(this.wireInvestments);
+    }
+
     refreshExpenses(){
         this.handleRefreshData(this.wireExpenses);
     }

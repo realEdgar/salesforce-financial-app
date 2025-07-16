@@ -12,6 +12,16 @@
                         <valueListItems>
                             <value>Account__c.New_Revenue</value>
                         </valueListItems>
+                        <valueListItems>
+                            <value>Account__c.Invest</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.Type__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Bank</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>

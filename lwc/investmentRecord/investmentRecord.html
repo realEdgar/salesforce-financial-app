@@ -5,7 +5,7 @@
                 <h2 class="slds-text-title_bold">Details</h2>
             </header>
             <section class="slds-box">
-                <lightning-record-view-form density="compact" object-api-name="Investment__c" record-id={recordId}>
+                <lightning-record-view-form density="compact" object-api-name="Investment__c" record-id={record.Id}>
                     <lightning-layout horizontal-align="spread" multiple-rows>
                         <lightning-layout-item size="12" large-device-size="6" medium-device-size="6"
                             small-device-size="12">
@@ -45,8 +45,26 @@
         </lightning-layout-item>
         <lightning-layout-item size="8">
             <div class="slds-var-p-left_small">
+                <header class="slds-box slds-theme_shade">
+                    <lightning-layout horizontal-align="spread" vertical-align="center">
+                        <lightning-layout-item flexibility="auto">
+                            <h2 class="slds-text-title_bold">Goods</h2>
+                        </lightning-layout-item>
+                        <lightning-layout-item flexibility="auto">
+                            <lightning-button-icon icon-name="utility:refresh" alternative-text="Refresh" type="button"
+                                onclick={handleRefreshGoods} class="slds-var-m-right_x-small"></lightning-button-icon>
+                            <lightning-button variant="brand" label={newLabel}
+                                onclick={handleNewGoods}></lightning-button>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </header>
                 <lightning-datatable key-field="Id" data={goodsData} columns={goodsCols} hide-checkbox-column
                     draft-values={draftValues} onrowaction={handleRowAction} onsave={handleSave}></lightning-datatable>
+                <section class="slds-box" lwc:if={noGoodsRecord}>
+                    <p class="slds-text-align_center">
+                        There are no relted records...
+                    </p>
+                </section>
             </div>
         </lightning-layout-item>
     </lightning-layout>

@@ -4,6 +4,7 @@ import { updateRecord } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { NavigationMixin } from 'lightning/navigation';
 import { refreshApex } from "@salesforce/apex";
+import { encodeDefaultFieldValues } from "lightning/pageReferenceUtils";
 
 const ACTIONS = [
     { label: 'Show Record', name: 'view' },
@@ -20,14 +21,22 @@ const GOODS_COLS = [
 ];
 
 export default class InvestmentRecord extends NavigationMixin(LightningElement) {
-    @api recordId;
+    @api record;
 
     goodsData = [];
     goodsCols = GOODS_COLS;
     draftValues = [];
     wireGoodsData;
 
-    @wire(getGoodsRelated, { investmentId: '$recordId'})
+    get newLabel(){
+        return `New Goods for ${this.record.Name}`;
+    }
+
+    get noGoodsRecord(){
+        return this.goodsData.length === 0;
+    }
+
+    @wire(getGoodsRelated, { investmentId: '$record.Id'})
     handleRelatedGoods(result){
         const { error, data } = result;
         this.wireGoodsData = result;
@@ -91,6 +100,23 @@ export default class InvestmentRecord extends NavigationMixin(LightningElement) 
             attributes: {
                 recordId,
                 actionName
+            }
+        }
+        this[NavigationMixin.Navigate](pageRef);
+    }
+
+    handleNewGoods(){
+        const defValues = encodeDefaultFieldValues({
+            Investment__c: this.record.Id
+        });
+        const pageRef = {
+            type: 'standard__objectPage',
+            attributes: {
+                objectApiName: 'Goods__c',
+                actionName: 'new'
+            },
+            state: {
+                defaultFieldValues: defValues
             }
         }
         this[NavigationMixin.Navigate](pageRef);

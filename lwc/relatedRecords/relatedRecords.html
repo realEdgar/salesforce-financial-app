@@ -3,8 +3,17 @@
         <lightning-tabset variant="scoped">
             <template lwc:if={relatedInvestmentData.length}>
                 <lightning-tab label="Investments">
+                    <lightning-layout horizontal-align="spread">
+                        <lightning-layout-item flexibility="auto"></lightning-layout-item>
+                        <lightning-layout-item flexibility="auto">
+                            <lightning-button variant="brand" label="Refresh" icon-name="utility:refresh"
+                                onclick={refreshInvestments}></lightning-button>
+                        </lightning-layout-item>
+                    </lightning-layout>
                     <template for:each={relatedInvestmentData} for:item="record">
-                        <c-investment-record record-id={record.Id} key={record.Id}></c-investment-record>
+                        <div class="slds-var-m-vertical_small" key={record.Id}>
+                            <c-investment-record record={record}></c-investment-record>
+                        </div>
                     </template>
                 </lightning-tab>
             </template>

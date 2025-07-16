@@ -1,0 +1,92 @@
+<template>
+    <lightning-quick-action-panel header="Invest Money">
+        <template lwc:if={step1}>
+            <header class="slds-box slds-theme_shade">
+                <lightning-layout horizontal-align="spread" vertical-align="center">
+                    <lightning-layout-item flexibility="auto">
+                        <h2 class="slds-text-title_bold">Existing Investment</h2>
+                    </lightning-layout-item>
+                    <lightning-layout-item flexibility="auto">
+                        <lightning-button variant="brand" label="New Investment"
+                            onclick={handleNewInvestment}></lightning-button>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </header>
+            <lightning-datatable key-field="Id" data={existingInvestmentData} columns={columns}
+                onrowselection={handleRowSelection} max-row-selection="1"></lightning-datatable>
+            <template lwc:if={noExistingInvestments}>
+                <section class="slds-box">
+                    <p class="slds-text-align_center">
+                        There are no Existing Investment records
+                    </p>
+                </section>
+            </template>
+        </template>
+        <template lwc:if={step2}>
+            <lightning-record-edit-form object-api-name="Investment__c" onsuccess={handleSuccess}>
+                <lightning-messages> </lightning-messages>
+                <lightning-input-field field-name="Name" variant="standard" required></lightning-input-field>
+                <lightning-input-field field-name="Account__c" value={recordId} disabled variant="standard"></lightning-input-field>
+                <lightning-input-field field-name="Available_to_Invest__c" variant="standard" required></lightning-input-field>
+                <div class="slds-var-m-top_x-small slds-align_absolute-center">
+                    <lightning-button 
+                        variant="neutral"
+                        label="Cancel" 
+                        onclick={handleCancel}
+                        class="slds-var-m-right_small"
+                    ></lightning-button>
+                    <lightning-button 
+                        variant="brand"
+                        label="Create Investment"
+                        type="submit"
+                    ></lightning-button>
+                </div>
+            </lightning-record-edit-form>
+        </template>
+        <template lwc:elseif={step3}>
+            <header class="slds-box slds-var-m-bottom_small">
+                <span>Current Available to Invest on <i class="slds-text-color_success">{selectedRecord.Name}</i>: </span>
+                <lightning-formatted-number 
+                    value={selectedRecord.Available_to_Invest__c}
+                    format-style="currency"
+                    currency-display-as="symbol"
+                    class="slds-text-title_bold"
+                ></lightning-formatted-number>
+            </header>
+            <lightning-input 
+                type="number"
+                label={inputLabel}
+                onchange={handleChange}
+                value={amountToInvest}
+                placeholder="e.g.. 1000.00"
+                required
+            ></lightning-input>
+        </template>
+        <div slot="footer" lwc:if={showFooter}>
+            <lightning-layout horizontal-align="spread" vertical-align="center">
+                <lightning-layout-item flexibility="auto">
+                    <lightning-button 
+                        variant="neutral"
+                        label="Cancel" 
+                        onclick={handleCancel}
+                    ></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item flexibility="auto">
+                    <lightning-button 
+                        variant="brand"
+                        label="Next"
+                        onclick={handleNext}
+                        disabled={disableNext}
+                        lwc:if={step1}
+                    ></lightning-button>
+                    <lightning-button 
+                        variant="brand"
+                        label="Invest Money"
+                        onclick={handleInvestUpdate}
+                        lwc:elseif={step3}
+                    ></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-quick-action-panel>
+</template>
